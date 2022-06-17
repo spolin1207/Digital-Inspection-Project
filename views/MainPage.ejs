@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/pure-min.css" />
+    <link rel="stylesheet" href="/digital-inspection.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <%- include('partials/Navbar', {data: ''}); %>
+
+    <div id="layout" class="content pure-g">
+      <div id="nav" class="pure-u">
+        <a href="#" class="nav-menu-button">Menu</a>
+
+        <div class="nav-inner">
+          <h2 style="color: white">Digital Inspection</h2>
+
+          <div class="pure-menu">
+            <ul class="pure-menu-list">
+              <li class="pure-menu-heading">Actions</li>
+              <li class="pure-menu-item">
+                <a href="#NewJob" class="pure-menu-link" onclick="addJob()">Add/Edit Job</a>
+              </li>
+              <li class="pure-menu-heading">Reports</li>
+              <li class="pure-menu-item">
+                <a href="#" class="pure-menu-link">Report 1</a>
+              </li>
+              <li class="pure-menu-item">
+                <a href="#" class="pure-menu-link">Report 2</a>
+              </li>
+              <li class="pure-menu-item">
+                <a href="#" class="pure-menu-link">Report 3</a>
+              </li>
+              <!--
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Web Orders <span class="email-count">(n)</span></a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Important</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sent</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Drafts</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Trash</a></li>
+                            <li class="pure-menu-heading">Labels</li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="email-label-personal"></span>Personal</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="email-label-work"></span>Work</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="email-label-travel"></span>Travel</a></li>
+                        -->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="main" class="pure-u-1">
+        <%- include('ActiveJobs', { data: data }); %>
+      </div>
+    </div>
+
+    <div id="newJob">
+      <div class="outer" onclick="closeJob()">
+        <div class="inner">
+          <label>Close</label>
+        </div>
+      </div>
+      <h2>New Job</h2>
+      <div>
+        <form id="sqldata" class="pure-form pure-form-aligned">
+          <fieldset>
+            <div class="pure-control-group">
+              <label for="job_number">Job Number</label>
+              <input type="text" id="job_number" placeholder="Job Number" />
+            </div>
+
+            <div class="pure-control-group">
+              <label for="job_file_input"></label>
+              <input type="file" id="job_file_input" multiple />
+            </div>
+
+            <div class="pure-control-group">
+              <label for="job_files">Job Files</label>
+              <textarea
+                class="pure-input-3-4"
+                id="job_files"
+                placeholder="Job Files"
+              ></textarea>
+            </div>
+
+            <div class="pure-control-group">
+              <label for="job_data">Job Data</label>
+              <textarea
+                class="pure-input-3-4"
+                id="job_data"
+                placeholder="Job Data"
+              ></textarea>
+            </div>
+
+            <div class="pure-control-group">
+              <label for="job_inspection">Job Inspection</label>
+              <textarea
+                class="pure-input-3-4"
+                id="job_inspection"
+                placeholder="Job Inspection"
+              ></textarea>
+            </div>
+
+            <div class="pure-controls">
+              <input
+                type="button"
+                id="sql-add"
+                class="button-success pure-button"
+                value="Add / Edit in SQL"
+              />
+              <!--<button id="sql-add" class="button-success pure-button">Add / Edit in SQL</button>-->
+              <button id="sql-lookup" class="button-warning pure-button">
+                SQL Lookup
+              </button>
+              <button id="sql-delete" class="button-error pure-button">
+                SQL Delete
+              </button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script src="ui.js"></script>
+  </body>
+</html>

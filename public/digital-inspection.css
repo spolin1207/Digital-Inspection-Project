@@ -1,0 +1,664 @@
+* {
+  box-sizing: border-box;
+}
+
+/*
+ * -- BASE STYLES --
+ * Most of these are inherited from Base, but I want to change a few.
+ */
+body {
+  color: #333;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #1b98f8;
+}
+
+/*
+ * -- HELPER STYLES --
+ * Over-riding some of the .pure-button styles to make my buttons look unique
+ */
+.primary-button,
+.secondary-button {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border-radius: 20px;
+}
+.primary-button {
+  color: #fff;
+  background: #1b98f8;
+  margin: 1em 0;
+}
+.secondary-button {
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #666;
+  padding: 0.5em 2em;
+  font-size: 80%;
+}
+
+/*
+ * -- LAYOUT STYLES --
+ * This layout consists of three main elements, `#nav` (navigation bar), `#list` (email list), and `#main` (email content). All 3 elements are within `#layout`
+ */
+#layout,
+#nav,
+#list,
+#main {
+  margin: 0;
+  padding: 0;
+}
+
+#main {
+  flex-grow: 1;
+  overflow: hidden;
+  /*height: 100vh;*/
+}
+
+/* Make the navigation 100% width on phones */
+#nav {
+  width: 100%;
+  height: 40px;
+  position: relative;
+  background: rgb(37, 42, 58);
+  text-align: center;
+}
+/* Show the "Menu" button on phones */
+#nav .nav-menu-button {
+  display: block;
+  top: 0.5em;
+  right: 0.5em;
+  position: absolute;
+}
+
+/* When "Menu" is clicked, the navbar should be 80% height */
+#nav.active {
+  height: 80%;
+}
+/* Don't show the navigation items... */
+.nav-inner {
+  display: none;
+}
+
+/* ...until the "Menu" button is clicked */
+#nav.active .nav-inner {
+  display: block;
+  padding: 2em 0;
+}
+
+/*
+ * -- NAV BAR STYLES --
+ * Styling the default .pure-menu to look a little more unique.
+ */
+#nav .pure-menu {
+  background: transparent;
+  border: none;
+  text-align: left;
+}
+#nav .pure-menu-link:hover,
+#nav .pure-menu-link:focus {
+  background: rgb(55, 60, 90);
+}
+#nav .pure-menu-link {
+  color: #fff;
+  margin-left: 0.5em;
+}
+#nav .pure-menu-heading {
+  border-bottom: none;
+  font-size: 110%;
+  color: rgb(75, 113, 151);
+}
+
+/*
+ * -- EMAIL STYLES --
+ * Styles relevant to the email messages, labels, counts, and more.
+ */
+.email-count {
+  color: rgb(75, 113, 151);
+}
+
+.email-label-personal,
+.email-label-work,
+.email-label-travel {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  margin-right: 0.5em;
+  border-radius: 3px;
+}
+.email-label-personal {
+  background: #ffc94c;
+}
+.email-label-work {
+  background: #41ccb4;
+}
+.email-label-travel {
+  background: #40c365;
+}
+
+/* Email Item Styles */
+.email-item {
+  padding: 0.9em 1em;
+  border-bottom: 1px solid #ddd;
+  border-left: 6px solid transparent;
+}
+.email-avatar {
+  border-radius: 3px;
+  margin-right: 0.5em;
+}
+.email-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  line-height: 64px;
+  text-align: center;
+  margin-left: -8px;
+  margin-right: 16px;
+}
+.email-name,
+.email-subject {
+  margin: 0;
+}
+.email-name {
+  text-transform: uppercase;
+  color: #999;
+}
+.email-desc {
+  font-size: 80%;
+  margin: 0.4em 0;
+}
+.email-item:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+.email-item-selected {
+  background: #eee;
+}
+.email-item-unread {
+  border-left: 6px solid #1b98f8;
+}
+
+/* Email Content Styles */
+
+.email-content {
+  height: calc(100% - 121px);
+  overflow: auto;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.email-content-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.email-invoice {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.email-csi {
+  width: 611px;
+  flex: 1;
+}
+
+.csi-co {
+  border: solid 2px black;
+  padding: 0px 10px 10px 10px;
+}
+
+.csi-values {
+  border-collapse: separate;
+  border-spacing: 0px 3px;
+  width: 100%;
+  table-layout: fixed;
+  padding-right: 5px;
+}
+.csi-values td {
+  border: solid 1px #ddd;
+  border-radius: 6px;
+  vertical-align: middle;
+  padding-bottom: 2px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+.csi-label:first-child {
+  width: 100px;
+}
+
+.csi-label {
+  border: none !important;
+  text-align: right;
+  font-weight: bold;
+  padding-right: 5px;
+  padding-left: 0px;
+}
+
+.csi-items {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.csi-items th,
+.csi-items td {
+  border: solid 1px #999;
+}
+
+.csi-items td {
+  padding: 0px 5px;
+}
+
+.email-placeholder {
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+
+  /*display: flex;
+    align-items: center;
+    justify-content: center;*/
+}
+
+.email-content-header,
+.email-content-body,
+.email-content-footer {
+  padding: 1em 2em;
+}
+.email-content-header {
+  border-bottom: 1px solid #ddd;
+  background-color: white;
+  position: sticky;
+  top: 0px;
+}
+
+.email-content-title {
+  margin: 0.5em 0 0;
+}
+.email-content-subtitle {
+  font-size: 1em;
+  margin: 0;
+  font-weight: normal;
+}
+.email-content-subtitle span {
+  color: #999;
+}
+.email-content-controls {
+  margin-top: 2em;
+  text-align: right;
+}
+.email-content-controls .secondary-button {
+  margin-bottom: 0.3em;
+}
+
+.email-avatar {
+  width: 40px;
+  height: 40px;
+}
+
+/* Console Container */
+.console {
+  height: 100px;
+  padding: 10px;
+}
+
+#msgconsole {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+  overflow-y: scroll;
+  border: solid 1px black;
+  border-radius: 8px 0px 0px 8px;
+}
+
+.msg-timestamp {
+  padding: 0px 20px 0px 10px;
+}
+
+/* alert message */
+
+.email-alert {
+  position: absolute;
+  background: rgba(238, 238, 238, 0.75);
+  top: 0px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.alert-container {
+  width: 500px;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  padding: 20px;
+}
+.alert-title {
+  margin-top: 0px;
+}
+.alert-message {
+  border: solid #ddd 1px;
+  height: 100px;
+  padding: 4px;
+  overflow-y: scroll;
+}
+.alert-button {
+  text-align: right;
+}
+.alert-button > button {
+  width: 100px;
+}
+
+/*
+ * -- ToDo List --
+ *
+ */
+
+.todo-complete li {
+  text-decoration: line-through;
+}
+
+/*
+ * -- LOADER STYLES --
+ * Styles relevant to the email messages, labels, counts, and more.
+ */
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  border: none;
+  width: 100%;
+  height: 100%;
+  background: #eee;
+  background: rgba(238, 238, 238, 0.5);
+}
+.loader-spinner {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  background: #eee;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Move the layout over so we can fit the nav + list in on the left */
+#layout {
+  position: relative;
+}
+
+/* These are position:fixed; elements that will be in the left 500px of the screen */
+#nav {
+  width: 300px;
+  height: 100vh;
+}
+
+/* Show the menu items on the larger screen */
+.nav-inner {
+  display: block;
+}
+
+/* Hide the "Menu" button on larger screens */
+#nav .nav-menu-button {
+  display: none;
+}
+
+#main {
+  position: static;
+  top: 33%;
+  right: 0;
+  bottom: 0;
+  left: 150px;
+  overflow: auto;
+  width: auto; /* so that it's not 100% */
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+  color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
+  background: rgb(28, 184, 65);
+  /* this is a green */
+}
+
+.button-error {
+  background: rgb(202, 60, 60);
+  /* this is a maroon */
+}
+
+.button-warning {
+  background: rgb(223, 117, 20);
+  /* this is an orange */
+}
+
+.button-secondary {
+  background: rgb(66, 184, 221);
+  /* this is a light blue */
+}
+
+.content textarea {
+  resize: none;
+  height: 125px;
+  overflow-y: scroll;
+}
+
+/* Top Nav */
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.top-left {
+  display: block;
+  margin-left: 20px;
+  margin-right: auto;
+  margin-top: 10px;
+  width: 15%;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #e9e9e9;
+  display: flex;
+}
+
+.topnav .logo {
+  max-height: 40px;
+  padding: 0px 10px;
+  margin: auto 0px;
+}
+
+.topnav a {
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #2196f3;
+  color: white;
+}
+
+.topnav .search-container {
+  margin-left: auto;
+}
+
+.topnav input[type="text"] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a,
+  .topnav input[type="text"],
+  .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type="text"] {
+    border: 1px solid #ccc;
+  }
+}
+
+#newJob {
+  display: none;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  background: #eee;
+  background: white;
+  padding: 25px;
+  box-sizing: content-box;
+  border: solid 4px #aaa;
+  border-radius: 20px;
+
+  min-width: 800px;
+}
+
+.outer {
+  position: relative;
+  cursor: pointer;
+  float: right;
+  margin: auto;
+  width: 50px;
+}
+
+.inner {
+  width: inherit;
+  text-align: center;
+}
+
+.outer .inner label {
+  font-size: 0.8em;
+  line-height: 4em;
+  text-transform: uppercase;
+  color: #000;
+  transition: all 0.3s ease-in;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.inner:before,
+.inner:after {
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: inherit;
+  background: #000;
+  left: 0;
+  transition: all 0.3s ease-in;
+}
+
+.inner:before {
+  top: 50%;
+  transform: rotate(45deg);
+}
+
+.inner:after {
+  bottom: 50%;
+  transform: rotate(-45deg);
+}
+
+.outer:hover label {
+  opacity: 1;
+}
+
+.outer:hover .inner:before,
+.outer:hover .inner:after {
+  transform: rotate(0);
+}
+
+.outer:hover .inner:before {
+  top: 0;
+}
+
+.outer:hover .inner:after {
+  bottom: 0;
+}
+
+/* Inspection Table */
+.InspectionTable th {
+  position: sticky; 
+  top: 0;
+}

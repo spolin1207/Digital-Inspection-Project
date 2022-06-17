@@ -1,0 +1,33 @@
+<% for (var k = 0; k < data.inspection.inspections.length; k++) { %>    
+     <% if (data.inspection.pages[i].items[j].hasOwnProperty('MeasurementValues')) { %>
+        <% info += `<td><button style="background: none;border: none;color: blue;text-decoration: underline;font-weight: bold;" onclick="ItemTable([${data.inspection.pages[i].items[j].Order}, ${data.inspection.pages[i].items[j].MeasurementValues[k].measurement}, ${data.inspection.pages[i].items[j].MeasurementValues[k].by}, ${k + 1}])">${data.inspection.pages[i].items[j].MeasurementValues[k].measurement}</button></td>`; %>
+      <% } %>
+      <% if (!data.inspection.pages[i].items[j].hasOwnProperty('MeasurementValues')) { %>
+        <% info += `<td><button style="background: none;border: none;color: blue;text-decoration: underline;font-weight: bold;" onclick="AddValue([${data.inspection.pages[i].items[j].Order}, ${k + 1}])">Add Value</button></td>`; %>
+      <% } %>
+    <% } %>
+
+    <% for (var i = 0; i < data.inspection.inspections.length; i++) { %>
+              <th>Sample <%- i + 1 %></th>
+            <% } %>
+
+
+            <% var info = ""; %>
+<% for(var i = 0; i < data.inspection.pages.length; i++) { %> 
+  <% for(var j = 0; j < data.inspection.pages[i].items.length; j++) { %> 
+    <% info += "<tr>"; %> 
+    <% info += `<td onclick="DemoItemTable(this.innerHTML)" style="color:blue">${data.inspection.pages[i].items[j].Order}</td>`; %> 
+    <% info += `<td>${data.inspection.pages[i].items[j].DimNom}</td>`; %>
+    <!-- insert from temp.txt -->
+    <% info += "</tr>"; %> 
+  <% } %> 
+<% } %>
+
+<tr>
+            <th>Item</th>
+            <th>Dimension</th>
+            <!-- Insert from temp.txt -->
+          </tr>
+          <%- info %>
+
+          

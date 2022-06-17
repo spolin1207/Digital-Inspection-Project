@@ -1,0 +1,138 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/pure-min.css" />
+    <link rel="stylesheet" href="/digital-inspection.css" />
+    <link rel="stylesheet" href="/jobview.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <%- include('partials/Navbar', {data: '' }); %>
+
+    <!-- JSON from backend saved as text inside invisible div so it can be accessed and used -->
+    <div id="jsondata" style="display: none"><%= JSON.stringify(data.inspection) %></div>
+
+    <!-- Sidebar containing basic job information, ability to add sample rows, as well as save JSON to database -->
+    <div id="PartOptions" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">||</a>
+      <h1 style="margin-left: 10%;">Job <%= data.job.job %></h1>
+      <h4 style="margin-left: 10%">Part <%= data.inspection.header.PartNumber %></h4>
+      <h4 style="margin-left: 10%"><%= data.inspection.header.PartDescription %></h4>
+      <h4 style="margin-left: 10%">Inspection <%= data.inspection.header.Insp_Date %></h4>
+      <button style="margin-left: 10%;" onclick="NewSample()">Enter New Sample</button>
+      <button style="margin-left: 10%; margin-top: 5%;" onclick="SaveData()">Save JSON Data</button>
+    </div>
+
+    <div id="PartInformation"> 
+      <!-- PDF -->
+      <div class="view">
+        <div id="jobdata" style="display: none">
+          <%= data.job.job %>
+        </div>
+        <!-- Frame for pdf. Correct src is piped in from joblogic.js functionality -->
+        <iframe
+          id="pdf-js-viewer"
+          src="/web/viewer.html?file=/jobpdf/J0123"
+          title="webviewer"
+          frameborder="0"
+          width="600"
+          height="400"
+        >
+        </iframe>
+      </div>
+
+      <!-- Information Table -->
+      <!-- Display specifics for each item/sample when a value inside of inspection table in clicked -->
+      <div class="measurement" style="height: 100%;overflow-y:scroll; overflow-x: hidden; margin-bottom: 20px;">
+        <table
+          id="InformationTable"
+          style="width: 25%; margin-left: 5%"
+          data-toggle="table"
+        >
+          <tr>
+            <th>Item</th>
+            <td id="item"></td>
+          </tr>
+          <tr>
+            <th>Sample Set</th>
+            <td id="sampleset"></td>
+          </tr>
+          <tr>
+            <th>Dimension</th>
+            <td id="dimension"></td>
+          </tr>
+          <tr>
+            <th>+ Tol</th>
+            <td id="plustol"></td>
+          </tr>
+          <tr>
+            <th>- Tol</th>
+            <td id="negtol"></td>
+          </tr>
+          <tr>
+            <th>Upper Limit</th>
+            <td id="upperlimit"></td>
+          </tr>
+          <tr>
+            <th>Lower Limit</th>
+            <td id="lowerlimit"></td>
+          </tr>
+          <tr>
+            <th>Inspection Method</th>
+            <td id="method"></td>
+          </tr>
+          <tr>
+            <th>Inspection Type</th>
+            <td id="type"></td>
+          </tr>
+          <tr>
+            <th>Measurement</th>
+            <td>
+              <input
+                type="text"
+                id="measurement"
+                size="15"
+                placeholder="Enter measurement"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>Operator ID</th>
+            <td>
+              <input
+                type="text"
+                id="operator"
+                size="15"
+                placeholder="Enter Operator ID"
+              />
+            </td>
+          </tr>
+        </table>
+        <button style="float: right; margin-right: 7%" onclick="SaveMeasurement()">Save</button>
+      </div>
+
+      <!-- Inspection Data Table -->
+      <!-- Table is rendered with JSON data in joblogic.js -->
+      <div id="wrapper" class="inspections" >
+        <table id="InspectionTable" style="width: 100%; font-family: MyWebFont;" data-toggle="table" class="InspectionTable">
+          <tr id="InspectionRows"></tr>
+          <tbody id="InspectionBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Apply fonts to the table. Still not working and must be completed -->
+    <style>
+      @font-face {
+        font-family: 'MyWebFont';
+        
+        src: url('/fonts/INSPECTIONXPERTGDTFRAMES.ttf');
+      }
+    </style>
+
+    <script type="text/javascript" src="/joblogic.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  </body>
+</html>

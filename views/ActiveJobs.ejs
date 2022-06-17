@@ -1,0 +1,47 @@
+<% var info = "" %>
+<% for(var i = 0; i < data.results.recordset.length; i++) { %>
+    <% info += "<tr>"; %>
+    <% info += `<td style="cursor: pointer;" onclick="location.href = '/job/${data.results.recordset[i].job}'"><button style="background:none;border:none;color:blue;text-decoration: underline; cursor: pointer;">${data.results.recordset[i].job}</button></td>`; %>
+    <% info += `<td>${data.results.recordset[i].job_details}</td>`; %>
+    <% info += `<td>${data.files[i]}</td>`; %>
+    <% info += "</tr>"; %>
+<% } %>
+
+<link rel="stylesheet" href="/jobview.css" />
+
+<h2 style="text-align: center">Active Jobs</h2>
+<input type="text" placeholder="Enter Job Number" name="search" id="TableInput" onkeyup="filterFunction()"/>
+<table id="JobsTable" style="width: 80%; margin-left: 10%" data-toggle="table">
+  <tr>
+    <th>Job</th>
+    <th>Job Details</th>
+    <th>Files</th>
+  </tr>
+  <%- info %>
+</table>
+
+<script>
+  function filterFunction() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("TableInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("JobsTable");
+    tr = table.getElementsByTagName("tr");
+  
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
+
+

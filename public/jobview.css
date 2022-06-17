@@ -1,0 +1,186 @@
+* {
+  box-sizing: border-box;
+}
+
+.sidebar {
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 47px;
+  bottom: 0px;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  background-color: #252a3a;
+  color: #fff;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: #444;
+  line-height: calc(100vh - 47px);
+  padding: 0px 5px;
+
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar .closebtn:hover {
+  color: #f1f1f1;
+}
+
+#PartOptions {
+  width: 300px;
+}
+
+#PartInformation {
+  margin-left: 300px;
+  transition: margin-left 0.5s;
+}
+
+#PartInformation {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  grid-template-rows: 1fr 300px;
+  gap: 0px 0px;
+  grid-template-areas:
+    "measurement view"
+    "inspections inspections";
+  height: calc(100vh - 47px);
+}
+
+.view {
+  grid-area: view;
+}
+.measurement {
+  grid-area: measurement;
+}
+.inspections {
+  grid-area: inspections;
+  overflow-y: scroll;
+  overflow-x: hidden;
+} 
+
+#pdf-js-viewer {
+  width: 100%;
+  height: 100%;
+}
+
+/*
+  div#PartOptions {
+    height: 100%;
+    width: 30%;
+    position: relative;
+    left: 2.5%;
+    border: 1px solid black;
+    float: left;
+  }
+
+  div#PartInformation {
+    height: 100%;
+    width: 65%;
+    position: relative;
+    border: 1px solid black;
+    float: right;
+  }
+
+  div#PartFiles {
+    height: 60%;
+    width: 60%;
+    position: absolute;
+    left: 800px;
+    top: 200px;
+  }*/
+
+/* Table CSS */
+th,
+td {
+  padding: 15px;
+}
+
+th {
+  text-align: left;
+  background-color: #2196f3;
+  color: white;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#TableInput {
+  /* Add a search icon to input */
+  /*background-position: 100px 120px;*/
+  /* Position the search icon */
+  background-repeat: no-repeat;
+  /* Do not repeat the icon image */
+  width: 60%;
+  /* Full-width */
+  font-size: 16px;
+  /* Increase font-size */
+  padding: 12px 20px 12px 40px;
+  /* Add some padding */
+  border: 1px solid #ddd;
+  /* Add a grey border */
+  margin-bottom: 12px;
+  /* Add some space below the input */
+  margin-left: 20%;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #2196f3;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}

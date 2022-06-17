@@ -1,0 +1,28 @@
+<div class="topnav">
+  <img
+    src="https://base.imgix.net/files/base/ebm/machinedesign/image/2019/07/machinedesign_com_sites_machinedesign.com_files_PBC_Linear_Logo_FINAL_RGB.png?auto=format&fit=max&w=1440"
+    class="logo" />
+  <a class="active" href="/">Home</a>
+  <!-- <a href="/database">Database</a> -->
+  <!-- <a href="/job/123">Job View</a> -->
+  <div class="search-container">
+    <div>
+      <input type="text" placeholder="Enter Job Number" name="search" id="JobIdInput" />
+      <button id="SearchJob">
+        <i class="fa fa-search"></i>
+      </button>
+      <script type="text/javascript">
+        document.getElementById("SearchJob").onclick = function () {
+          var JobNumber = "/job/" + document.getElementById("JobIdInput").value;
+          location.href = JobNumber;
+        };
+        document.getElementById("JobIdInput").addEventListener("keyup", function (event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+              document.getElementById("SearchJob").click();
+            }
+          });
+      </script>
+    </div>
+  </div>
+</div>
